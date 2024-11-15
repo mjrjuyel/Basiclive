@@ -10,6 +10,11 @@ class ChatController extends Controller
 {
     public function index(){
         $user = User::where('id','!=',auth()->user()->id)->latest('id')->get();
-        return $user;
+        // return $user;
+        return view('chat.chatlist',compact('user'));
+    }
+    public function chat($id){
+        $id=User::where('id',$id)->first();
+        return view('chat.chat',compact('id'));
     }
 }

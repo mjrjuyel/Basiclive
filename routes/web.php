@@ -12,6 +12,7 @@ use App\Livewire\Counter;
 Route::view('/', 'welcome');
 
 Route::get('/chat',[ChatController::class,'index'])->middleware('auth');
+Route::get('/chatnumber/{id}',[ChatController::class,'chat'])->middleware('auth');
 
 
 // Normal Coupon Add in Session
