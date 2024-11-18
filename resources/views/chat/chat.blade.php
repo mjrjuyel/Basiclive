@@ -1,3 +1,3 @@
 <x-app-layout>
-    @livewire('chat-component',['user'=>$id]);
+    @livewire('chat-component',['userId'=>$id]);
 </x-app-layout>

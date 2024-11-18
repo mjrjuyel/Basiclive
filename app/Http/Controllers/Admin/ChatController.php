@@ -14,7 +14,7 @@ class ChatController extends Controller
         return view('chat.chatlist',compact('user'));
     }
     public function chat($id){
-        $id=User::where('id',$id)->first();
+        // $id=User::where('id',$id)->first();
         return view('chat.chat',compact('id'));
     }
 }

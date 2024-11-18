@@ -61,56 +61,30 @@
                                     <div class="modal-body">
                                         <div class="msg-body">
                                             <ul>
-                                                <li class="sender">
-                                                    <p> Hey, Are you there? </p>
-                                                    <span class="time">10:06 am</span>
-                                                </li>
-                                                <li class="sender">
-                                                    <p> Hey, Are you there? </p>
-                                                    <span class="time">10:16 am</span>
-                                                </li>
-                                                <li class="repaly">
-                                                    <p>yes!</p>
-                                                    <span class="time">10:20 am</span>
-                                                </li>
-                                                <li class="sender">
-                                                    <p> Hey, Are you there? </p>
-                                                    <span class="time">10:26 am</span>
-                                                </li>
-                                                <li class="sender">
-                                                    <p> Hey, Are you there? </p>
-                                                    <span class="time">10:32 am</span>
-                                                </li>
-                                                <li class="repaly">
-                                                    <p>How are you?</p>
-                                                    <span class="time">10:35 am</span>
-                                                </li>
-                                                <li>
-                                                    <div class="divider">
-                                                        <h6>Today</h6>
-                                                    </div>
-                                                </li>
-
-                                                <li class="repaly">
-                                                    <p> yes, tell me</p>
-                                                    <span class="time">10:36 am</span>
-                                                </li>
-                                                <li class="repaly">
-                                                    <p>yes... on it</p>
-                                                    <span class="time">junt now</span>
-                                                </li>
+                                                @foreach($messages as $message)
+                                                    @if($message['sender'] != Auth::user()->name)
+                                                        <li class="sender">
+                                                            <p> {{ $message['message']}} </p>
+                                                            <span class="time">{{$message['created_at']->format('g:i A')}}</span>
+                                                        </li>
+                                                    @else
+                                                        <li class="repaly">
+                                                            <p>{{$message['message']}}</p>
+                                                            <span class="time">{{$message['created_at']->format('g:i A')}}</span>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
 
                                             </ul>
                                         </div>
                                     </div>
 
-
                                     <div class="send-box">
-                                        <form action="">
-                                            <input type="text" class="form-control" aria-label="message…"
+                                        <form wire:submit="sendMessage">
+                                            <input type="text" wire:model="message" class="form-control" aria-label="message…"
                                                 placeholder="Write message…">
 
-                                            <button type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                                            <button type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i>
                                                 Send</button>
                                         </form>
 
